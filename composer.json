@@ -1,0 +1,12 @@
+{
+    "name": "thewanderingcrow/csis410-liberty",
+    "description": "This project will contain all of my code for csis410",
+    "type": "project",
+    "authors": [
+        {
+            "name": "TheWanderingCrow",
+            "email": "pbmenking@liberty.edu"
+        }
+    ],
+    "require": {}
+}
