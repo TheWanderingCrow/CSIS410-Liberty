@@ -8,5 +8,10 @@
             "email": "pbmenking@liberty.edu"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CrowCMS\\": "src/"
+        }
+    }
 }
