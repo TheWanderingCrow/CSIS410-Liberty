@@ -2,15 +2,18 @@ header {
     color: white;
     background-color: black;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 1%;
     margin-top: 0px;
+    width: 100%;
+    right: 0%;
+    top: 0%;
+    position: absolute;
 }
 
 header-text {
     color: white;
     font-size: 50px;
     size: 100px;
-    padding: 15px;
 }
 
 
@@ -20,4 +23,8 @@ footer {
     text-align: center;
     margin-bottom: 0px;
     margin-top: 20px;
+    width: 100%;
+    right: 0%;
+    bottom: 0%;
+    position: absolute;
 }

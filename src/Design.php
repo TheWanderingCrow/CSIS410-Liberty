@@ -11,4 +11,13 @@ class Design {
         HEREDOC;
         echo $header;
     }
+
+    public static function footer() {
+        $footer = <<<HEREDOC
+        <footer>
+            Copyright Patrick Menking 2023
+        </footer>
+        HEREDOC;
+        echo $footer;
+    }
 }
