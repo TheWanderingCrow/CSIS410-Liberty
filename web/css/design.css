@@ -6,6 +6,14 @@ header {
     margin-top: 0px;
 }
 
+header-text {
+    color: white;
+    font-size: 50px;
+    size: 100px;
+    padding: 15px;
+}
+
+
 footer {
     color: white;
     background-color: black;

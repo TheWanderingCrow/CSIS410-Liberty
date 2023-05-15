@@ -6,7 +6,7 @@ class Design {
     public static function header() {
         $header = <<<HEREDOC
         <header>
-            <h1>CrowCMS</h1>
+            <header-text>CrowCMS</header-text>
         </header>
         HEREDOC;
         echo $header;
