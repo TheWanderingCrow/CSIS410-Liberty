@@ -3,22 +3,20 @@
 namespace CrowCMS;
 
 class Loader {
-    private $page;
+    private $path;
     public function __construct() {
-        $this->page = null;
+        $this->path = null;
     }
 
     public function load(String $pageName) {
-        $path = __DIR__."/pages/".$pageName;
-        if (!file_exists($path)) {
-            throw new Exception("File not Found");
+        $this->path = __DIR__."/pages/".$pageName.".php";
+        if (!file_exists($this->path)) {
+            throw new \Exception("File not Found: ".$this->path);
         }
-        $fp = fopen($path, 'r');
-        $this->page = fread($fp, filesize($path));
     }
 
     public function render() {
         // echo the .html or .php page out to screen
-        echo $this->page;
+        include $this->path;
     }
 }

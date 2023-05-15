@@ -1,3 +1,15 @@
 header {
-    
+    color: white;
+    background-color: black;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+footer {
+    color: white;
+    background-color: black;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 20px;
 }
