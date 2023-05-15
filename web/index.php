@@ -1,3 +1,3 @@
 <?php
 
-echo "HELLO WORLD";
+require __DIR__."/../vendor/autoload.php";
