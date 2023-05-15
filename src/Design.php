@@ -5,9 +5,9 @@ namespace CrowCMS;
 class Design {
     public static function header() {
         $header = <<<HEREDOC
-        <div class="header">
+        <header>
             <h1>CrowCMS</h1>
-        </div>
+        </header>
         HEREDOC;
         echo $header;
     }
