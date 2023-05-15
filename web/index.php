@@ -3,5 +3,11 @@
 require __DIR__."/../vendor/autoload.php";
 
 use CrowCMS\Loader;
+$loader = new Loader();
 
-var_dump($_POST);
+if (!isset($_GET["p"])) {
+    $loader->load("index.html");
+    $loader->render();
+} else {
+    $path = $_GET["p"];
+}

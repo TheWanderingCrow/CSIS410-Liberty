@@ -9,10 +9,13 @@ class Loader {
     }
 
     public function load(String $pageName) {
-        // load a template or page into the class
+        $path = __DIR__."/pages/".$pageName;
+        $fp = fopen($path, 'r');
+        $this->page = fread($fp, filesize($path));
     }
 
     public function render() {
         // echo the .html or .php page out to screen
+        echo $this->page;
     }
 }
