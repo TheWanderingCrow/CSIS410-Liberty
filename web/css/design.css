@@ -1,4 +1,4 @@
-header {
+.header {
     color: white;
     background-color: black;
     text-align: center;
@@ -9,18 +9,18 @@ header {
     position: absolute;
 }
 
-header-text {
+.header-text {
     color: white;
     font-size: 50px;
 }
 
-last-edited {
+.last-edited {
     color: white;
-    font-size: 20px;
+    font-size: 10px;
     float: right;
 }
 
-footer {
+.footer {
     color: white;
     background-color: black;
     padding-top: 1%;
@@ -33,7 +33,7 @@ footer {
     grid-auto-flow: column;
 }
 
-footer-text {
+.footer-text {
     color: white;
     font-size: 20px;
 }
