@@ -3,7 +3,6 @@ header {
     background-color: black;
     text-align: center;
     padding: 1%;
-    margin-top: 0px;
     width: 100%;
     right: 0%;
     top: 0%;
@@ -13,18 +12,28 @@ header {
 header-text {
     color: white;
     font-size: 50px;
-    size: 100px;
 }
 
+last-edited {
+    color: white;
+    font-size: 20px;
+    float: right;
+}
 
 footer {
     color: white;
     background-color: black;
+    padding-top: 1%;
+    padding-bottom: 1%;
     text-align: center;
-    margin-bottom: 0px;
-    margin-top: 20px;
     width: 100%;
     right: 0%;
     bottom: 0%;
     position: absolute;
+    grid-auto-flow: column;
+}
+
+footer-text {
+    color: white;
+    font-size: 20px;
 }
