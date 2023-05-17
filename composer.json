@@ -8,7 +8,9 @@
             "email": "pbmenking@liberty.edu"
         }
     ],
-    "require": {},
+    "require": {
+        "monolog/monolog": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "CrowCMS\\": "src/"
