@@ -1,11 +1,18 @@
 <?php
 
 namespace CrowCMS;
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 class Loader {
     private $path;
+    private $logger;
     public function __construct() {
         $this->path = null;
+        $this->logger = new Logger('Loader');
+        $this->logger->pushHandler(new StreamHandler(__DIR__."/../logs/log"), Level::Warning);
     }
 
     public function load(String $pageName) {
@@ -17,6 +24,7 @@ class Loader {
 
     public function render() {
         // echo the .html or .php page out to screen
+        $this->logger->info("Rendering ".$this->path);
         include $this->path;
     }
 }
