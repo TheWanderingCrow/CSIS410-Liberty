@@ -9,5 +9,7 @@ if (!isset($_GET["p"])) {
     $loader->load("index");
     $loader->render();
 } else {
-    $path = $_GET["p"];
+    $page = $_GET["p"];
+    $loader->load($page);
+    $loader->render();
 }

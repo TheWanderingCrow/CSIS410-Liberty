@@ -24,7 +24,6 @@ class Design {
         $header = <<<HEREDOC
         <div>
             <div class="header">
-                <div class="header-logo"></div>
                 <div class="header-text">CrowCMS</div>
             </div>
         </div>
@@ -34,7 +33,7 @@ class Design {
 
     public static function footer($filePath) {
         date_default_timezone_set("EST");
-        $dateLastModified = date('D \of M \a\t g\:i\:s A \E\S\T', filemtime($filePath));
+        $dateLastModified = date('M d', filemtime($filePath));
         $footer = <<<HEREDOC
         <div>
             <div class="footer">

@@ -7,8 +7,9 @@ Design::prelude();
 
 <body>
     <?php Design::header(); ?>
-    <div>
-        <p>Test</p>
+    <div class="body-text">
+        <h1>Main Menu</h1>
+        <p><a href="/index.php?p=foundations">Module 1: Week 1 Foundations</a></p>
     </div>
     <?php Design::footer(__FILE__); ?>
 </body>

@@ -11,7 +11,7 @@ class Loader {
     public function load(String $pageName) {
         $this->path = __DIR__."/pages/".$pageName.".php";
         if (!file_exists($this->path)) {
-            throw new \Exception("File not Found: ".$this->path);
+            $this->path = __DIR__."/pages/404.php";
         }
     }
 
