@@ -15,5 +15,6 @@ Design::prelude();
             We constantly update our website with the latest products, so check back frequently for new arrivals. Shop with us and experience excellence in online technology shopping! 
         </p>
     </div>
+    <?php Design::footer(__FILE__); ?>
 </body>
 </html>
