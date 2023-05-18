@@ -4,6 +4,11 @@ namespace CrowCMS;
 
 class Design {
 
+    /**
+     * Calling this function at the top of a web page to include the nessesary headers for Strict XHTML 1.0, along with our site meta and title
+     * 
+     * @return void
+     */
     public static function prelude() {
         $prelude = <<<HEREDOC
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -20,6 +25,11 @@ class Design {
         echo $prelude;
     }
 
+    /**
+     * Calling this function, typically right underneath the prelude, will generate our site header
+     * 
+     * @return void
+     */
     public static function header() {
         $header = <<<HEREDOC
         <div>
@@ -31,6 +41,17 @@ class Design {
         echo $header;
     }
 
+    /**
+     * This function is typically called underneath the Design::header() function, this will generate a navigation bar with buttons to each page
+     * 
+     * @param array $args is a assosiative array of button values and links
+     *                    ex. [
+     *                          "About Us" => "/about",
+     *                          "Contact Us" => "/contact"    
+     *                        ]
+     * 
+     * @return void
+     */
     public static function navbar(array $args) {
         $locs = [];
         foreach ($args as $name => $loc) {
@@ -48,6 +69,13 @@ class Design {
         echo $navbar;
     }
 
+    /**
+     * Footer generates the site footer with our copyright information, XHTML and CSS stickers, and the date the page was last modified
+     * 
+     * @param $filePath is the path to the file, conventionally set to __FILE__
+     * 
+     * @return void
+     */
     public static function footer($filePath) {
         date_default_timezone_set("EST");
         $dateLastModified = date('M d', filemtime($filePath));
