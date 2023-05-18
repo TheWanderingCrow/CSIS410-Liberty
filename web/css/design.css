@@ -75,6 +75,15 @@ ul {
     padding: 1%;
 }
 
+.navbar-list {
+    color: white;
+    background-color: black;
+    display: block;
+    text-align: center;
+    display: inline;
+    padding: 2%;
+}
+
 .navbar-button {
     color: white;
     background-color: black;
@@ -86,15 +95,5 @@ ul {
 
 .navbar-button:hover {
     background-color: gray;
-    color: white;
-}
-
-.navbar-link:visited {
-    background-color: black;
-    color: white;
-}
-
-.navbar-link:link {
-    background-color: black;
     color: white;
 }

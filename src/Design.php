@@ -55,7 +55,7 @@ class Design {
     public static function navbar(array $args) {
         $locs = [];
         foreach ($args as $name => $loc) {
-            $tmp = '<li class="navbar-button"><a href="'.$loc.'" class="navbar-link">'.$name.'</a></li>';
+            $tmp = '<li class="navbar-list"><a href="'.$loc.'" class="navbar-button">'.$name.'</a></li>';
             array_push($locs, $tmp);
         }
         $locs = implode("", $locs);
