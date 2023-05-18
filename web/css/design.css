@@ -3,6 +3,12 @@ body {
     padding: 0;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .header {
     color: white;
     background-color: black;
@@ -58,4 +64,32 @@ body {
 
 .body-text {
     margin-left: 1%;
+}
+
+.navbar {
+    color: white;
+    background-color: black;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    padding: 1%;
+}
+
+.navbar-button {
+    color: white;
+    background-color: black;
+    display: block;
+    text-align: center;
+    display: inline;
+    padding: 2%;
+}
+
+.navbar-button:hover {
+    background-color: gray;
+    color: white;
+}
+
+.navbar-link:visited {
+    background-color: black;
+    color: white;
 }

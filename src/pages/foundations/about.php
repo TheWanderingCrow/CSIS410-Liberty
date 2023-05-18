@@ -5,6 +5,12 @@ Design::prelude();
 ?>
 <body>
     <?php Design::header(); ?>
+    <?php Design::navbar([
+        "Main Menu" => "/index.php?p=foundations",
+        "About Us" => "/index.php?p=foundations/about",
+        "phpinfo();" => "/index.php?p=foundations/info",
+        "Contact Us" => "/index.php?p=foundations/contact"
+    ]); ?>
     <div style="padding:1%;">
         <h1>Who are we</h1>
         <p>

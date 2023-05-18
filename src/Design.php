@@ -31,6 +31,23 @@ class Design {
         echo $header;
     }
 
+    public static function navbar(array $args) {
+        $locs = [];
+        foreach ($args as $name => $loc) {
+            $tmp = '<li class="navbar-button"><a href="'.$loc.'" class="navbar-link">'.$name.'</a></li>';
+            array_push($locs, $tmp);
+        }
+        $locs = implode("", $locs);
+        $navbar = <<<HEREDOC
+        <div class="navbar">
+            <ul>
+                {$locs}
+            </ul>
+        </div>
+        HEREDOC;
+        echo $navbar;
+    }
+
     public static function footer($filePath) {
         date_default_timezone_set("EST");
         $dateLastModified = date('M d', filemtime($filePath));
