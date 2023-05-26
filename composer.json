@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "monolog/monolog": "^3.3"
+        "monolog/monolog": "^3.3",
+        "phpstan/phpstan": "^1.10"
     },
     "autoload": {
         "psr-4": {
