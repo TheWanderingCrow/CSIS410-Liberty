@@ -124,3 +124,12 @@ img {
     height: 200px;
     width: auto;
 }
+
+.radio-label {
+    display: inline-block;
+}
+
+.radio-input {
+    margin: 0 auto;
+    display: block;
+}
