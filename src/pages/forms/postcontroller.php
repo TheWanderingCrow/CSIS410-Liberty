@@ -13,5 +13,5 @@ $client->postpoll($ranker_id, '1', $_POST['postradio1']);
 $client->postpoll($ranker_id, '2', $_POST['postradio2']);
 $client->postpoll($ranker_id, '3', $_POST['postradio3']);
 
-header("Location: https://crowcms.wanderingcrow.net/index.php?p=forms/results");
-exit();
+// header("Location: http://crowcms.wanderingcrow.net/index.php?p=forms/results&mode=post");
+// exit();

@@ -133,3 +133,11 @@ img {
     margin: 0 auto;
     display: block;
 }
+
+.result-top {
+    margin: auto;
+}
+.result-bar {
+    height: 24px;
+    background-color: aqua;
+}

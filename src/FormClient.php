@@ -9,7 +9,7 @@ class FormClient {
     private $client;
 
     public function __construct() {
-        $this->client = new SQLite3(__DIR__."../forms.db");
+        $this->client = new \SQLite3(__DIR__."/../forms.db");
     }
 
     /**
@@ -20,10 +20,11 @@ class FormClient {
      * @return int id of the ranker created
      */
     public function create_ranker($fullname) {
-        $this->client->exec("INSERT INTO ranker (fullname) VALUES ({$fullname});");
-        $res = $this->client->query("SELECT id FROM ranker WHERE fullname = {$name};");
+        $ty = $this->client->exec("INSERT INTO ranker (fullname) VALUES (\"{$fullname}\");");
+        $res = $this->client->query("SELECT ranker_id FROM ranker WHERE fullname = \"{$fullname}\";");
         $res = $res->fetchArray(SQLITE3_ASSOC);
-        return $res['id'];
+        if ($ty == false) {echo "rip";} 
+        return $res['ranker_id'];
     }
     /**
      * Register a new option value pair in the database for get requests
@@ -33,7 +34,7 @@ class FormClient {
      * @param value the value chosen for the option
      */
     public function getpoll($ranker, $option, $value) {
-        $this->client->exec("INSERT INTO getchoices (ranker_id, option, value) VALUES ({$ranker}, {$option}, {$value});");
+        $this->client->exec("INSERT INTO getchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
     }
 
     /**
@@ -44,7 +45,7 @@ class FormClient {
      * @param value the value chosen for the option
      */
     public function postpoll($ranker, $option, $value) {
-        $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES ({$ranker}, {$option}, {$value});");
+        $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
     }
 
     /**
