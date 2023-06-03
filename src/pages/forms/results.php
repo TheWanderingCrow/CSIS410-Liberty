@@ -43,9 +43,9 @@ switch ($_GET['mode']) {
         <table class="org-table-head">
             <tr>
                 <th>Votes</th>
-                <th>Option 1</th>
-                <th>Option 2</th>
-                <th>Option 3</th>
+                <th>TP-Link Archer AX55</th>
+                <th>ASUS AX6000</th>
+                <th>TP-Link AC1900</th>
             </tr>
             <tr>
                 <td>1</td>
@@ -53,8 +53,8 @@ switch ($_GET['mode']) {
                     $votes = [];
 
                     for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[0][$i])) {
-                                array_push($votes, "<td>{$values[0][$i]}</td>");
+                            if (isset($values[$i][1])) {
+                                array_push($votes, "<td>{$values[$i][1]}</td>");
                             } else {
                                 array_push($votes, "<td>0</td>");
                             }
@@ -70,8 +70,8 @@ switch ($_GET['mode']) {
                     $votes = [];
 
                     for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[0][$i])) {
-                                array_push($votes, "<td>{$values[0][$i]}</td>");
+                            if (isset($values[$i][2])) {
+                                array_push($votes, "<td>{$values[$i][2]}</td>");
                             } else {
                                 array_push($votes, "<td>0</td>");
                             }
@@ -104,8 +104,8 @@ switch ($_GET['mode']) {
                     $votes = [];
 
                     for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[0][$i])) {
-                                array_push($votes, "<td>{$values[0][$i]}</td>");
+                            if (isset($values[$i][4])) {
+                                array_push($votes, "<td>{$values[$i][4]}</td>");
                             } else {
                                 array_push($votes, "<td>0</td>");
                             }
@@ -121,8 +121,8 @@ switch ($_GET['mode']) {
                     $votes = [];
 
                     for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[0][$i])) {
-                                array_push($votes, "<td>{$values[0][$i]}</td>");
+                            if (isset($values[$i][5])) {
+                                array_push($votes, "<td>{$values[$i][5]}</td>");
                             } else {
                                 array_push($votes, "<td>0</td>");
                             }

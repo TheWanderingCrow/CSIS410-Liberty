@@ -20,10 +20,9 @@ class FormClient {
      * @return int id of the ranker created
      */
     public function create_ranker($fullname) {
-        $ty = $this->client->exec("INSERT INTO ranker (fullname) VALUES (\"{$fullname}\");");
+        $this->client->exec("INSERT INTO ranker (fullname) VALUES (\"{$fullname}\");");
         $res = $this->client->query("SELECT ranker_id FROM ranker WHERE fullname = \"{$fullname}\";");
         $res = $res->fetchArray(SQLITE3_ASSOC);
-        if ($ty == false) {echo "rip";} 
         return $res['ranker_id'];
     }
     /**
@@ -45,7 +44,7 @@ class FormClient {
      * @param value the value chosen for the option
      */
     public function postpoll($ranker, $option, $value) {
-        $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
+        $ty = $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
     }
 
     /**
