@@ -40,99 +40,130 @@ switch ($_GET['mode']) {
 
 <body>
     <div style="margin:auto;">
-        <table class="org-table-head">
-            <tr>
-                <th>Votes</th>
-                <th>TP-Link Archer AX55</th>
-                <th>ASUS AX6000</th>
-                <th>TP-Link AC1900</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <?php
-                    $votes = [];
+        <table class="org-table-head" border="1">
+            <thead>
+                <tr>
+                    <th>Votes</th>
+                    <th>TP-Link Archer AX55</th>
+                    <th>ASUS AX6000</th>
+                    <th>TP-Link AC1900</th>
+                </tr>
+            </thead>
+            <tbody class="ord-table-body">
+                <tr>
+                    <td>1</td>
+                    <?php
+                        $votes = [];
 
-                    for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[$i][1])) {
-                                array_push($votes, "<td>{$values[$i][1]}</td>");
-                            } else {
-                                array_push($votes, "<td>0</td>");
+                        for ($i = 1; $i != 4; $i++) {
+                                if (isset($values[$i][1])) {
+                                    array_push($votes, "<td>{$values[$i][1]}</td>");
+                                } else {
+                                    array_push($votes, "<td>0</td>");
+                                }
+                        }
+                        echo implode("", $votes);
+                    ?>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <?php
+                        $votes = [];
+
+                        for ($i = 1; $i != 4; $i++) {
+                                if (isset($values[$i][2])) {
+                                    array_push($votes, "<td>{$values[$i][2]}</td>");
+                                } else {
+                                    array_push($votes, "<td>0</td>");
+                                }
+                            
+                        }
+
+                        echo implode("", $votes);
+                    ?>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <?php
+                        $votes = [];
+
+                        for ($i = 1; $i != 4; $i++) {
+                                if (isset($values[$i][3])) {
+                                    array_push($votes, "<td>{$values[$i][3]}</td>");
+                                } else {
+                                    array_push($votes, "<td>0</td>");
+                                }
+                            
+                        }
+
+                        echo implode("", $votes);
+                    ?>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <?php
+                        $votes = [];
+
+                        for ($i = 1; $i != 4; $i++) {
+                                if (isset($values[$i][4])) {
+                                    array_push($votes, "<td>{$values[$i][4]}</td>");
+                                } else {
+                                    array_push($votes, "<td>0</td>");
+                                }
+                            
+                        }
+
+                        echo implode("", $votes);
+                    ?>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <?php
+                        $votes = [];
+
+                        for ($i = 1; $i != 4; $i++) {
+                                if (isset($values[$i][5])) {
+                                    array_push($votes, "<td>{$values[$i][5]}</td>");
+                                } else {
+                                    array_push($votes, "<td>0</td>");
+                                }
+                            
+                        }
+
+                        echo implode("", $votes);
+                    ?>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+                <div>
+                    <table class="org-table-head" border="1">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $comments = $client->fetchcomments($_GET['mode']);
+                            $commentRows = [];
+
+                            foreach ($comments as $comment) {
+                                $template = <<<HEREDOC
+                                <tr>
+                                    <td>{$comment['fullname']}</td>
+                                    <td>{$comment['comment']}</td>
+                                </tr>
+                                HEREDOC;
+
+                                array_push($commentRows, $template);
                             }
-                        
-                    }
 
-                    echo implode("", $votes);
-                ?>
-            </tr>
-            <tr>
-                <td>2</td>
-                <?php
-                    $votes = [];
-
-                    for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[$i][2])) {
-                                array_push($votes, "<td>{$values[$i][2]}</td>");
-                            } else {
-                                array_push($votes, "<td>0</td>");
-                            }
-                        
-                    }
-
-                    echo implode("", $votes);
-                ?>
-            </tr>
-            <tr>
-                <td>3</td>
-                <?php
-                    $votes = [];
-
-                    for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[$i][3])) {
-                                array_push($votes, "<td>{$values[$i][3]}</td>");
-                            } else {
-                                array_push($votes, "<td>0</td>");
-                            }
-                        
-                    }
-
-                    echo implode("", $votes);
-                ?>
-            </tr>
-            <tr>
-                <td>4</td>
-                <?php
-                    $votes = [];
-
-                    for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[$i][4])) {
-                                array_push($votes, "<td>{$values[$i][4]}</td>");
-                            } else {
-                                array_push($votes, "<td>0</td>");
-                            }
-                        
-                    }
-
-                    echo implode("", $votes);
-                ?>
-            </tr>
-            <tr>
-                <td>5</td>
-                <?php
-                    $votes = [];
-
-                    for ($i = 1; $i != 4; $i++) {
-                            if (isset($values[$i][5])) {
-                                array_push($votes, "<td>{$values[$i][5]}</td>");
-                            } else {
-                                array_push($votes, "<td>0</td>");
-                            }
-                        
-                    }
-
-                    echo implode("", $votes);
-                ?>
-            </tr>
-                </table>
+                            echo implode("", $commentRows);
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
 
                 <?php Design::footer(__FILE__); ?>

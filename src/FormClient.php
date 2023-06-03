@@ -25,6 +25,11 @@ class FormClient {
         $res = $res->fetchArray(SQLITE3_ASSOC);
         return $res['ranker_id'];
     }
+
+    public function create_comment($ranker, $method, $comment) {
+        $this->client->exec("INSERT INTO comments (ranker_id, method, comment) VALUES (\"{$ranker}\", \"{$method}\", \"{$comment}\");");
+    }
+
     /**
      * Register a new option value pair in the database for get requests
      * 
@@ -66,6 +71,30 @@ class FormClient {
                 break;
             case 'post':
                 $res = $this->client->query("SELECT option, value FROM postchoices");
+                $rows = [];
+                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                    array_push($rows, $row);
+                }
+                return $rows;
+                break;
+            default:
+                throw new \Exception("Error Processing Request", 1);
+                break;
+        }
+    }
+
+    public function fetchcomments($pollname) {
+        switch ($pollname) {
+            case 'get':
+                $res = $this->client->query("SELECT ranker.fullname, comment FROM ranker JOIN comments on ranker.ranker_id = comments.ranker_id WHERE comments.method = \"get\";");
+                $rows = [];
+                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                    array_push($rows, $row);
+                }
+                return $rows;
+                break;
+            case 'post':
+                $res = $this->client->query("SELECT ranker.fullname, comment FROM ranker JOIN comments on ranker.ranker_id = comments.ranker_id WHERE comments.method = \"post\";");
                 $rows = [];
                 while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
                     array_push($rows, $row);

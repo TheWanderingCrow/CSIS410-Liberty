@@ -49,6 +49,7 @@ Design::prelude();
                 <label class="radio-label"><input type="radio" name="getradio3" value="5" class="radio-input" required/>5</label>
             </span>
         </div>
+        <div><label>Comments: <input type="text" name="comments"/></label></div>
         <div><label>Enter Name: <input type="text" name="fullname" required/></label></div>
         <input type="hidden" name="p" value="forms/getcontroller"/>
         <input type="submit" value="Submit: GET">
@@ -92,6 +93,7 @@ Design::prelude();
                     <label class="radio-label"><input type="radio" name="postradio3" value="5" class="radio-input" required/>5</label>
                 </span>
             </div>
+            <div><label>Comments: <input type="text" name="comments"/></label></div>
             <div><label>Enter Name: <input type="text" name="fullname" required/></label></div>
             <input type="submit" value="Submit: POST"/>
         </form>

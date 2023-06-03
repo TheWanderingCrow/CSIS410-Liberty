@@ -7,6 +7,10 @@ $client = new FormClient;
 
 $ranker_id = $client->create_ranker($_POST['fullname']);
 
+if (isset($_POST['comments'])) {
+    $client->create_comment($ranker_id, "post", $_POST['comments']);
+}
+
 // just do it three times since we only have three rows
 
 $client->postpoll($ranker_id, '1', $_POST['postradio1']);
