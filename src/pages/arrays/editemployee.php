@@ -18,5 +18,7 @@ switch ($_POST['action']) {
         break;
 }
 
-header("Location: http://crowcms.wanderingcrow.net/index.php?p=variables/info?eid=\"{$_POST['employee_id']}\"&ename=''");
+$ename = $client->get_employee_name($_POST['employee_id']);
+
+header("Location: http://crowcms.wanderingcrow.net/index.php?p=variables/info&eid={$_POST['employee_id']}&ename={$ename['fname']} {$ename['lname']}");
 exit();

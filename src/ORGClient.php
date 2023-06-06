@@ -86,5 +86,10 @@ class ORGClient {
     public function add_new_field($employee_id, $field, $value) {
         $this->client->exec("INSERT INTO info (employee_id, type, blurb) VALUES (\"{$employee_id}\", \"{$field}\", \"{$value}\");");
     }
+    
+    public function get_employee_name($employee_id) {
+        $this->result = $this->client->query("SELECT fname, lname FROM employee WHERE employee_id = \"{$employee_id}\";");
+        return $this->result->fetchArray(SQLITE3_ASSOC);
+    }
 
 }
