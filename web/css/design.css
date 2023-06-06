@@ -146,3 +146,11 @@ img {
     height: 24px;
     background-color: aqua;
 }
+
+.update-spacing-1 {
+    margin-left:1%;
+}
+
+.update-spacing-2 {
+    margin-left:2%;
+}

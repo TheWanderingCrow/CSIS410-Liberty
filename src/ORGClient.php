@@ -79,4 +79,12 @@ class ORGClient {
         }
     }
 
+    public function update_employee_info($employee_id, $field, $value) {
+        $this->client->exec("UPDATE info SET blurb = \"{$value}\" WHERE employee_id = \"{$employee_id}\" AND type = \"{$field}\";");
+    }
+
+    public function add_new_field($employee_id, $field, $value) {
+        $this->client->exec("INSERT INTO info (employee_id, type, blurb) VALUES (\"{$employee_id}\", \"{$field}\", \"{$value}\");");
+    }
+
 }
