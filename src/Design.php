@@ -79,6 +79,9 @@ class Design {
     public static function footer($filePath) {
         date_default_timezone_set("EST");
         $dateLastModified = date('M d', filemtime($filePath));
+        if (isset($_SESSION['user'])) {
+            echo '<div class="footer-text"><a href="/index.php?p=logout"><button>Logout</button></a></div>';
+        }
         $footer = <<<HEREDOC
         <div>
             <div class="footer">
@@ -96,6 +99,7 @@ class Design {
                     </p>
                 </div>
                 <div class="footer-text">Copyright Patrick Menking 2023</div>
+                {$logout}
                 <div class="last-edited"> Last Modified: {$dateLastModified}</div>
             </div>
         </div>
