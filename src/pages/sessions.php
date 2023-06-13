@@ -11,15 +11,16 @@ if (!isset($_SESSION['willkommen'])) {
 }
 
 if ($_SESSION['authenticated'] == "true") {
-    echo "You are already logged in";
+    echo '<p style="margin-left:1%;">You are already logged in</p>';
+    Design::footer(__FILE__);
     exit();
 }
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($_POST['username'] == "customer" && $_POST['password'] == "customer") {
-        $_SESSION['authenticated'] == "true";
+        $_SESSION['authenticated'] = "true";
         unset($_SESSION['willkommen']);
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SESSION['return']);
         exit();
     } else {
         $_SESSION['willkommen'] = "User/Password incorrect, please try again:";
@@ -39,5 +40,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             </form>
         </div>
     </div>
+    <?php Design::footer(__FILE__); ?>
 </body>
 </html>

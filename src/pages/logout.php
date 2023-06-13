@@ -5,9 +5,6 @@ use CrowCMS\Design;
 
 Design::prelude();
 Design::header();
-
-session_unset();
-session_destroy();
 ?>
 <body>
 <?php

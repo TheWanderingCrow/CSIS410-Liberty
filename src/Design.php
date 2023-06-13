@@ -79,8 +79,10 @@ class Design {
     public static function footer($filePath) {
         date_default_timezone_set("EST");
         $dateLastModified = date('M d', filemtime($filePath));
-        if (isset($_SESSION['user'])) {
-            echo '<div class="footer-text"><a href="/index.php?p=logout"><button>Logout</button></a></div>';
+        if ($_SESSION['authenticated']) {
+            $logout = '<div class="footer-text"><a href="/index.php?p=logout"><button>Logout</button></a></div>';
+        } else {
+            $logout = '';
         }
         $footer = <<<HEREDOC
         <div>
@@ -105,5 +107,15 @@ class Design {
         </div>
         HEREDOC;
         echo $footer;
+    }
+
+    public static function requires_authentication() {
+        if (!$_SESSION['authenticated']) {
+            $_SESSION['return'] = $_SERVER['HTTP_REFERER'] . "?p=" . $_GET['p'];
+            header("Location: /index.php?p=sessions");
+            exit();
+        } else {
+            return;
+        }
     }
 }

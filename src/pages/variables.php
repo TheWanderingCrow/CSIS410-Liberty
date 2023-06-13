@@ -5,6 +5,7 @@ require __DIR__."/../../vendor/autoload.php";
 use CrowCMS\Design;
 use CrowCMS\ORGClient;
 $client = new ORGClient;
+Design::requires_authentication();
 Design::prelude();
 ?>
 
