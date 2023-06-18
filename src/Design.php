@@ -109,13 +109,13 @@ class Design {
         echo $footer;
     }
 
-    public static function requires_authentication() {
-        if (!$_SESSION['authenticated']) {
+    public static function requires_authentication($role) {
+        if ($_SESSION['authenticated'] && ($_SESSION['user'] == $role || $_SESSION['user'] == 'admin')) {
+            return;
+        } else {
             $_SESSION['return'] = $_SERVER['HTTP_REFERER'] . "?p=" . $_GET['p'];
             header("Location: /index.php?p=sessions");
             exit();
-        } else {
-            return;
         }
     }
 }

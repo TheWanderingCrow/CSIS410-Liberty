@@ -17,13 +17,18 @@ if ($_SESSION['authenticated'] == "true") {
 }
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    if ($_POST['username'] == "customer" && $_POST['password'] == "customer") {
+    // if ($_POST['username'] == "customer" && $_POST['password'] == "customer") {
+    //     $_SESSION['authenticated'] = "true";
+    //     unset($_SESSION['willkommen']);
+    //     header("Location: " . $_SESSION['return']);
+    //     exit();
+    // } else {
+    //     $_SESSION['willkommen'] = "User/Password incorrect, please try again:";
+    // }
+    $userClient = new CrowCMS\UserClient;
+    if ($userClient->login($_POST['username'], $_POST['password'])) {
         $_SESSION['authenticated'] = "true";
-        unset($_SESSION['willkommen']);
-        header("Location: " . $_SESSION['return']);
-        exit();
-    } else {
-        $_SESSION['willkommen'] = "User/Password incorrect, please try again:";
+        $_SESSION['user'] = $_POST['username'];
     }
 }
 

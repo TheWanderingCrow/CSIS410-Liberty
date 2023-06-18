@@ -5,7 +5,7 @@ use CrowCMS\ORGClient;
 
 $client = new ORGClient;
 
-Design::requires_authentication();
+Design::requires_authentication('customer');
 Design::prelude();
 Design::header();
 ?>
