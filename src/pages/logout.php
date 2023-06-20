@@ -14,6 +14,10 @@ Design::header();
             session_destroy();
 
             echo '<div style="margin-left:1%;"><p>You have been logged out</p></div>';
+
+            sleep(5);
+            header("Location: /");
+            exit();
         } else {
             header("Location: " . $_SERVER['HTTP_REFERER']);
         }

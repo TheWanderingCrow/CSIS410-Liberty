@@ -154,3 +154,15 @@ img {
 .update-spacing-2 {
     margin-left:2%;
 }
+
+.cart table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.cart img {
+    height: 100px;
+    width: auto;
+}
