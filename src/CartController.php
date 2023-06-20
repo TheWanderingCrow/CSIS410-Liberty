@@ -32,4 +32,20 @@ class CartController {
             return false;
         }
     }
+
+    public function getFormattedPrice($id) {
+    
+        $this->result = $this->client->query("select price from item where item_id = {$id}");
+        $price = $this->result->fetchArray(SQLITE3_ASSOC)['price'];
+        $fmt = new \NumberFormatter('en-US', \NumberFormatter::CURRENCY);
+        $newprice = $fmt->parseCurrency($price, $curr);
+        return $newprice;
+
+    }
+
+    public function getCheckoutItem($id) {
+        $this->result = $this->client->query("select title, price from item where item_id = {$id}");
+        $res = $this->result->fetchArray(SQLITE3_ASSOC);
+        return $res;
+    }
 }

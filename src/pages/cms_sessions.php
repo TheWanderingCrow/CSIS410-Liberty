@@ -5,15 +5,39 @@ use CrowCMS\CartController;
 
 $controller = new CartController;
 
+// Handle cart updates here
+
+if (isset($_POST['id'])) {
+    if (!isset($_SESSION['cart']['items'][$_POST['id']])) {
+        $_SESSION['cart']['items'][$_POST['id']] = array(
+            'quantity' => $_POST['quantity'],
+            'id' => $_POST['id']
+        );
+    } else {
+        $_SESSION['cart']['items'][$_POST['id']]['quantity'] += $_POST['quantity'];
+    }
+
+    $_SESSION['cart']['count'] += $_POST['quantity'];
+    $_SESSION['cart']['total'] += $controller->getFormattedPrice($_POST['id']);
+
+}
+
 Design::prelude();
 Design::header();
-$numCart = $_SESSION['cartCount'] ?? 0;
-Design::navbar(['Cart: '.$numCart => '/index.php?p=cart']);
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+    $_SESSION['cart']['total'] = 0;
+    $_SESSION['cart']['count'] = 0;
+    $_SESSION['cart']['items'] = [];
+}
+$numCart = $_SESSION['cart']['count'];
+Design::navbar(["Cart: {$numCart}" => '/index.php?p=cart']);
 
 $items = $controller->fetch_items();
 $rows = [];
 foreach ($items as $item) {
     $template = <<<HEREDOC
+    <form action="/index.php?p=cms_sessions" method="post">
     <tr>
         <td><img src="{$item['img']}" alt="{$item['title']}"/></td>
         <td>
@@ -34,9 +58,10 @@ foreach ($items as $item) {
             <option value="8">8</option>
             <option value="9">9</option>
         </select></td>
-        <input type="text" name="id" value="{$item['item_id']} hidden readonly/>
+        <input type="text" name="id" value="{$item['item_id']}" hidden readonly/>
         <td><input type="submit" value="Add to Cart"/></td>
     </tr>
+    </form>
     HEREDOC;
     array_push($rows, $template);
 }
@@ -45,9 +70,7 @@ foreach ($items as $item) {
 <body>
 <div class="cart">
     <table>
-        <form method="post">
             <?php echo implode('', $rows); ?>
-        </form>
     </table>
 </div>
 
