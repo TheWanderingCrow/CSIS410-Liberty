@@ -34,6 +34,43 @@ Design::prelude();
         </table>
     </div>
 
+    <div>
+        <form action="/index.php?p=database" method="post">
+            <div class="comments">
+                <h3>Leave a comment</h3>
+                <label>Name: <input type="text" name="name" required/></label><br>
+                <label>Title: <input type="text" name="title" style="margin-left: 17px;" required/></label><br>
+                <label>Comment: <input type="text" name="comment" size="50" required/></label><br>
+                <input type="submit" name="action" value="Submit Comment"/>
+            </div>
+        </form>
+    </div>
+    <div class="comments">
+        <?php
+        use CrowCMS\DatabaseController;
+
+        $client = new DatabaseController();
+
+        $rows = $client->fetchComments();
+
+        $t = [];
+        foreach ($rows as $row) {
+            $posted_date = strval($row['commentdate']);
+            $template = <<<HEREDOC
+            <div>
+                {$row['name']} - <b>{$row['title']}:</b><br>
+                "{$row['comment']}"<br>
+                Posted on: {$posted_date}<br><br>
+            </div>
+            HEREDOC;
+
+            array_push($t, $template);
+        }
+
+        echo implode("", $t);
+        ?>
+    </div>
+
     <?php Design::footer(__FILE__); ?>
 </body>
 </html>
