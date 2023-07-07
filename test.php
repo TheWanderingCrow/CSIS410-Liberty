@@ -1,9 +1,9 @@
 <?php
 
 require __DIR__."/vendor/autoload.php";
-use CrowCMS\FormClient;
+use CrowCMS\UserClient;
 
 
-$client = new FormClient;
+$client = new UserClient;
 
-print_r($client->fetchresults('get'));
+print_r($client->login('admin', 'admin'));

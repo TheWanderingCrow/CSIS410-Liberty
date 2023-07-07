@@ -20,7 +20,7 @@ class UserClient {
     }
 
     public function login($username, $password) {
-        $res = $this->client->query("SELECT password FROM user WHERE username = \"{$username}\" LIMIT 1");
+        $res = $this->client->query("SELECT password, accesslevel FROM user WHERE username = \"{$username}\" LIMIT 1");
         if(!$res) { echo "REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"; }
         $res = $res->fetch_assoc();
         if ($res['password'] == $password) {
@@ -30,7 +30,22 @@ class UserClient {
         }
     }
 
-    public function addUser($username, $password) {
-        $stmt = $this->client->prepare("INSERT INTO user");
+    public function addUser($username, $password, $accesslevel) {
+        $stmt = $this->client->prepare("INSERT INTO user (username, password, accesslevel) values (?, ?, ?)");
+        $stmt->execute([$username, $password, $accesslevel]);
+    }
+
+    public function delUser($username) {
+        $stmt = $this->client->prepare("DELETE FROM user WHERE username = ?;");
+        $stmt->execute([$username]);
+    }
+
+    public function listUsers() {
+        $res = $this->client->query("SELECT username FROM user WHERE username <> \"admin\"");
+        $arr = [];
+        while ($row = $res->fetch_assoc()) {
+            array_push($arr, $row);
+        }
+        return $arr;
     }
 }
