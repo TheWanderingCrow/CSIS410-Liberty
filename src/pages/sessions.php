@@ -28,9 +28,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // }
     try {
         $userClient = new UserClient();
-    if ($userClient->login($_POST['username'], $_POST['password'])) {
+        $accesslevel = $userClient->login($_POST['username'], $_POST['password']);
+    if ($accesslevel != false) {
         $_SESSION['authenticated'] = "true";
         $_SESSION['user'] = $_POST['username'];
+        $_SESSION['user_accesslevel'] = $accesslevel;
         unset($_SESSION['willkommen']);
         header("Location: " . $_SESSION['return']);
         exit();

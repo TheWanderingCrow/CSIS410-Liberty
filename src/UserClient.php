@@ -24,9 +24,13 @@ class UserClient {
         if(!$res) { echo "REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"; }
         $res = $res->fetch_assoc();
         if ($res['password'] == $password) {
-            return true;
+            return $res['accesslevel'];
         } else {
             return false;
         }
+    }
+
+    public function addUser($username, $password) {
+        $stmt = $this->client->prepare("INSERT INTO user");
     }
 }

@@ -110,7 +110,7 @@ class Design {
     }
 
     public static function requires_authentication($role) {
-        if ($_SESSION['authenticated'] && ($_SESSION['user'] == $role || $_SESSION['user'] == 'admin')) {
+        if ($_SESSION['authenticated'] && ($_SESSION['user_accesslevel'] == $role || $_SESSION['user_accesslevel'] == 'admin')) {
             return;
         } else {
             $_SESSION['return'] = $_SERVER['HTTP_REFERER'] . "?p=" . $_GET['p'];
