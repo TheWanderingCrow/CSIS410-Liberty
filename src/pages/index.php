@@ -17,6 +17,7 @@ Design::prelude();
         <p><a href="/index.php?p=cms_sessions">Module 5: Week 5 CMS Sessions</a></p>
         <p><a href="/index.php?p=database">Module 6: Week 6 Database</a></p>
         <p><a href="/index.php?p=cms_database">Module 8: Week 8 CMS Database</a></p>
+        <p><a href="/index.php?p=admin_manage">CMS Account Management</a></p>
     </div>
     <?php Design::footer(__FILE__); ?>
 </body>
