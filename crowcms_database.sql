@@ -257,7 +257,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` tinyint(4) DEFAULT NULL,
   `username` varchar(9) DEFAULT NULL,
-  `password` varchar(9) DEFAULT NULL
+  `password` varchar(9) DEFAULT NULL,
+  `accesslevel` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -267,7 +268,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'customer','customer'),(2,'admin','admin'),(3,'publisher','publisher');
+INSERT INTO `user` VALUES (2,'admin','admin','admin'),(3,'publisher','publisher','publisher'),(NULL,'customer','customer','customer');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1403,7 +1404,7 @@ CREATE TABLE `pma__recent` (
 
 LOCK TABLES `pma__recent` WRITE;
 /*!40000 ALTER TABLE `pma__recent` DISABLE KEYS */;
-INSERT INTO `pma__recent` VALUES ('root','[{\"db\":\"crowcms\",\"table\":\"comments\"},{\"db\":\"crowcms\",\"table\":\"sqlite_sequence\"}]');
+INSERT INTO `pma__recent` VALUES ('root','[{\"db\":\"crowcms\",\"table\":\"user\"},{\"db\":\"crowcms\",\"table\":\"comments\"},{\"db\":\"crowcms\",\"table\":\"sqlite_sequence\"}]');
 /*!40000 ALTER TABLE `pma__recent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1686,4 +1687,4 @@ USE `phpmyadmin`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-07  0:05:41
+-- Dump completed on 2023-07-07  3:11:18
