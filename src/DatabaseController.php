@@ -23,7 +23,7 @@ class DatabaseController {
     }
 
     public function fetchComments() {
-        $result = $this->conn->query("select name, title, comment, commentdate from comments");
+        $result = $this->conn->query("select name, title, comment, commentdate from db_comments");
         $rows = [];
 
         while ($row = $result->fetch_assoc()) {
@@ -36,7 +36,7 @@ class DatabaseController {
         // submitten der comments
         date_default_timezone_set('America/New_York');
         try {
-            $stmt = $this->conn->prepare("insert into comments (name, title, comment, commentdate) VALUES (?, ?, ?, ?)");
+            $stmt = $this->conn->prepare("insert into db_comments (name, title, comment, commentdate) VALUES (?, ?, ?, ?)");
         } catch (\Throwable $th) {
             //throw $th;
             throw new \Exception("Error preparing statement");

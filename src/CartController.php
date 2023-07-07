@@ -6,8 +6,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 
 class CartController {
-    private \SQLite3 $client;
-    public \SQlite3Result $result;
+    private $client;
     public $error;
 
     /**
@@ -16,14 +15,14 @@ class CartController {
      * @return void;
      */
     public function __construct() {
-        $this->client = new \SQLite3(__DIR__.'/../items.db');
+        $this->client = new \mysqli('localhost', 'root', 'potato', 'crowcms');
     }
 
     public function fetch_items() {
         try {
             $this->result = $this->client->query('select * from item;');
             $arr = [];
-            while ($row = $this->result->fetchArray(SQLITE3_ASSOC)) {
+            while ($row = $this->result->fetch_assoc()) {
                 array_push($arr, $row);
             }
             return $arr;
@@ -36,7 +35,7 @@ class CartController {
     public function getFormattedPrice($id) {
     
         $this->result = $this->client->query("select price from item where item_id = {$id}");
-        $price = $this->result->fetchArray(SQLITE3_ASSOC)['price'];
+        $price = $this->result->fetch_assoc()['price'];
         $fmt = new \NumberFormatter('en-US', \NumberFormatter::CURRENCY);
         $newprice = $fmt->parseCurrency($price, $curr);
         return $newprice;
@@ -45,7 +44,7 @@ class CartController {
 
     public function getCheckoutItem($id) {
         $this->result = $this->client->query("select title, price from item where item_id = {$id}");
-        $res = $this->result->fetchArray(SQLITE3_ASSOC);
+        $res = $this->result->fetch_assoc();
         return $res;
     }
 }

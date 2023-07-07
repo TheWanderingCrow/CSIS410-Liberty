@@ -6,8 +6,8 @@ require __DIR__ . "/../vendor/autoload.php";
 
 
 class UserClient {
-    private \SQLite3 $client;
-    public \SQlite3Result $result;
+    private $client;
+    public $result;
     public $error;
 
     /**
@@ -16,13 +16,13 @@ class UserClient {
      * @return void;
      */
     public function __construct() {
-        $this->client = new \SQLite3(__DIR__.'/../users.db');
+        $this->client = new \mysqli('localhost', 'root', 'potato', 'crowcms');
     }
 
     public function login($username, $password) {
         $res = $this->client->query("SELECT password FROM user WHERE username = \"{$username}\" LIMIT 1");
         if(!$res) { echo "REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"; }
-        $res = $res->fetchArray(SQLITE3_ASSOC);
+        $res = $res->fetch_assoc();
         if ($res['password'] == $password) {
             return true;
         } else {

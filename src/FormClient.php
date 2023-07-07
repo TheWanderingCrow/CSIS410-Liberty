@@ -9,7 +9,7 @@ class FormClient {
     private $client;
 
     public function __construct() {
-        $this->client = new \SQLite3(__DIR__."/../forms.db");
+        $this->client = new \mysqli('localhost', 'root', 'potato', 'crowcms');
     }
 
     /**
@@ -20,14 +20,18 @@ class FormClient {
      * @return int id of the ranker created
      */
     public function create_ranker($fullname) {
-        $this->client->exec("INSERT INTO ranker (fullname) VALUES (\"{$fullname}\");");
+        // $this->client->exec("INSERT INTO ranker (fullname) VALUES (\"{$fullname}\");");
+        $stmt = $this->client->prepare("INSERT INTO ranker (fullname) VALUES (?)");
+        $stmt->execute([$fullname]);
         $res = $this->client->query("SELECT ranker_id FROM ranker WHERE fullname = \"{$fullname}\";");
-        $res = $res->fetchArray(SQLITE3_ASSOC);
+        $res = $res->fetch_assoc();
         return $res['ranker_id'];
     }
 
     public function create_comment($ranker, $method, $comment) {
-        $this->client->exec("INSERT INTO comments (ranker_id, method, comment) VALUES (\"{$ranker}\", \"{$method}\", \"{$comment}\");");
+        // $this->client->exec("INSERT INTO comments (ranker_id, method, comment) VALUES (\"{$ranker}\", \"{$method}\", \"{$comment}\");");
+        $stmt = $this->client->prepare("INSERT INTO comments (ranker_id, method, comment) VALUES (?, ?, ?)");
+        $stmt->execute([$ranker, $method, $comment]);
     }
 
     /**
@@ -38,7 +42,9 @@ class FormClient {
      * @param value the value chosen for the option
      */
     public function getpoll($ranker, $option, $value) {
-        $this->client->exec("INSERT INTO getchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
+        // $this->client->exec("INSERT INTO getchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
+        $stmt = $this->client->prepare("INSERT INTO getchoices (ranker_id, option, value) VALUES (?, ?, ?)");
+        $stmt->execute([$ranker, $option, $value]);
     }
 
     /**
@@ -49,7 +55,9 @@ class FormClient {
      * @param value the value chosen for the option
      */
     public function postpoll($ranker, $option, $value) {
-        $ty = $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
+        // $ty = $this->client->exec("INSERT INTO postchoices (ranker_id, option, value) VALUES (\"{$ranker}\", \"{$option}\", \"{$value}\");");
+        $stmt = $this->client->prepare("INSERT INTO postchoices (ranker_id, option, value) VALUES (?, ?, ?)");
+        $stmt->execute([$ranker, $option, $value]);
     }
 
     /**
@@ -64,7 +72,7 @@ class FormClient {
             case 'get':
                 $res = $this->client->query("SELECT option, value FROM getchoices");
                 $rows = [];
-                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                while ($row = $res->fetch_assoc()) {
                     array_push($rows, $row);
                 }
                 return $rows;
@@ -72,7 +80,7 @@ class FormClient {
             case 'post':
                 $res = $this->client->query("SELECT option, value FROM postchoices");
                 $rows = [];
-                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                while ($row = $res->fetch_assoc()) {
                     array_push($rows, $row);
                 }
                 return $rows;
@@ -88,7 +96,7 @@ class FormClient {
             case 'get':
                 $res = $this->client->query("SELECT ranker.fullname, comment FROM ranker JOIN comments on ranker.ranker_id = comments.ranker_id WHERE comments.method = \"get\";");
                 $rows = [];
-                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                while ($row = $res->fetch_assoc()) {
                     array_push($rows, $row);
                 }
                 return $rows;
@@ -96,7 +104,7 @@ class FormClient {
             case 'post':
                 $res = $this->client->query("SELECT ranker.fullname, comment FROM ranker JOIN comments on ranker.ranker_id = comments.ranker_id WHERE comments.method = \"post\";");
                 $rows = [];
-                while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+                while ($row = $res->fetch_assoc()) {
                     array_push($rows, $row);
                 }
                 return $rows;

@@ -1,9 +1,9 @@
 <?php
 
 require __DIR__."/vendor/autoload.php";
-use CrowCMS\DatabaseController;
+use CrowCMS\FormClient;
 
 
-$client = new DatabaseController;
+$client = new FormClient;
 
-print_r($client->fetchComments());
+print_r($client->fetchresults('get'));
