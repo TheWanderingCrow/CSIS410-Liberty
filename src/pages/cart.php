@@ -24,6 +24,38 @@ if (isset($_POST['action'])) {
             break;
     }
 }
+print_r($_SESSION['cart']['items']);
+
+if (isset($_POST['itemid'])) {
+    $action = explode(":", $_POST['itemid']);
+    try {
+        foreach ($_SESSION['cart']['items'] as &$item) {
+            if ($item['id'] == $action[1]) {
+                switch ($action[0]) {
+                    case 'updoot':
+                        $specs = $controller->getCheckoutItem($item['id']);
+                        $item['quantity'] += 1;
+                        $_SESSION['cart']['total'] += floatval(preg_replace('/[^\d\.]+/', '', $specs['price']));
+                        break;
+                    case 'downdoot':
+                        $specs = $controller->getCheckoutItem($item['id']);
+                        $item['quantity'] -= 1;
+                        $_SESSION['cart']['total'] -= floatval(preg_replace('/[^\d\.]+/', '', $specs['price']));
+                        if ($item['quantity'] == 0) {
+                            unset($item);
+                        }
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+        }
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+    }
+
+}
 ?>
 <body>
 <style>
@@ -43,6 +75,7 @@ table, tr, td {
                 <td><b>Item</td>
                 <td><b>Price</td>
                 <td><b>Quantity</td>
+                <td><b>Actions</td>
             </tr>
             HEREDOC;
             foreach ($_SESSION['cart']['items'] as $item) {
@@ -52,6 +85,7 @@ table, tr, td {
                     <td><b>{$specs['title']}</b></td>
                     <td>{$specs['price']}</td>
                     <td>{$item['quantity']}</td>
+                    <td><form action="/index.php?p=cart" method="post"><button name="itemid" value="downdoot:{$item['id']}">-</button><button name="itemid" value="updoot:{$item['id']}">+</button></form></td>
                 </tr>
                 HEREDOC;
                 array_push($rows, $template);
